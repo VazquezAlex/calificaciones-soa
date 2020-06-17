@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Promedio</title>
+	
+	<style>
+
+		*, :root {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			box-sizing: border-box;
+			--x-padding: 1rem;
+			--y-padding: 0.5rem;
+			--border-radius: 10px;
+			--width-grades: 30%;
+		}
+
+		/*  Estilos de elementos  */
+		h1 {
+			padding-top: 5%;
+			width: 100%;
+			text-align: center;
+			font-size: 1.8rem;
+		}
+
+		/*  Clases.  */
+
+		.navbar {
+			display: flex;
+			width: 100vw;
+			color: white;
+			background: rgb(44, 92, 165);
+			align-items: center;
+			padding: 2rem;
+		}
+
+		.info-container {
+			padding: 3% 5%;
+		}
+
+		.btn {
+			display: block;
+			text-decoration: none;
+			margin-top: 5rem;
+			padding: var(--y-padding) var(--x-padding);
+			border: none;
+			border-radius: var(--border-radius);
+			background-color: rgb(35, 168, 35);
+			color: white;
+			width: 30%;
+			text-align: center;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<div class="navbar">
+		<p>Usuario Registrado</p>
+	</div>
+
+	<h1>Has registrado una nueva calificación</h1>
+
+    <div class="info-container">
+		<p class="register-notice">Usuario registrado {{ nombre }}</p>
+		<p>Su promedio es de {{ promedio }}</p>
+    	<a class="btn" href="/calificaciones">Regresar</a>
+	</div> 
+
+</body>
+</html>

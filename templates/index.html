@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Práctica Calificaciones</title>
+	
+	<style>
+
+		*, :root {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			box-sizing: border-box;
+			--x-padding: 1rem;
+			--y-padding: 0.5rem;
+			--border-radius: 10px;
+			--width-grades: 30%;
+		}
+
+		/*  Estilos de elementos  */
+		h2 {
+			font-size: 1.8rem;
+		}
+
+		input[type="text"], input[type="password"] {
+			margin: 0.25rem 0 1rem 0;
+			padding: var(--y-padding) var(--x-padding);
+			width: 90%;
+			border: 1px solid grey;
+			border-radius: var(--border-radius);
+		}
+
+		table {
+			text-align: center;
+			margin-top: 2%;
+		}
+
+		th {
+			font-size: 1.1rem;
+		}
+
+
+		td {
+			padding: 10px 15px;
+			width: 15%;
+		}
+
+		.tr-data:hover {
+			background: #d0d0d0;
+			cursor: pointer;
+		}
+	
+
+		/*  Clases.  */
+
+		.navbar {
+			display: flex;
+			width: 100vw;
+			color: white;
+			background: rgb(44, 92, 165);
+			align-items: center;
+			padding: 2rem;
+		}
+
+		.row {
+			display: flex;	
+		}
+
+		.calificaciones {
+			width: 35%;
+			padding: 5%;
+		}
+
+		.grades-container {
+			display: flex;
+		}
+
+		.grades-title {
+			font-size: 1.3rem;
+			font-weight: bold;
+			margin-bottom: 0.5rem;
+			margin-top: 1.5rem;
+		}
+
+		.grades-instruction {
+			color: rgb(109, 109, 109);
+			margin-bottom: 1.5rem;
+		}
+
+		.formulario {
+			margin-top: 5%;
+		}
+
+		.listing {
+			width: calc(100% - var(--width-grades));
+			padding: 5%;
+		}
+
+		.listing h2 {
+			text-align: center;
+		}
+
+		.send-button {
+			margin-top: 1rem;
+			padding: var(--y-padding) var(--x-padding);
+			border: none;
+			border-radius: var(--border-radius);
+			background-color: rgb(35, 168, 35);
+			color: white;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="navbar">
+		<p>Calificaciones</p>
+	</div>
+
+	<div class="row">
+
+		<div class="calificaciones">
+
+			<h2>Calificaciones</h2>
+		
+			<form class="formulario" method="POST" action="add">
+				{% csrf_token %}
+		
+				<p>Inserta el nombre del alumno</p>
+				<input type="text" name="nombre" placeholder="Ej. Alejandro Vázquez...">
+		
+				<p>Materia</p>
+				<input type="text" name="materia" placeholder="Ej. Química">
+		
+				<p class="grades-title">Calificaciones</p>
+				<p class="grades-instruction">
+					Ingresa cada calificación. Sólo números.
+				</p>
+				<div class="grades-container">
+					<div class="">
+						<p>Calificación 1</p>
+						<input type="text" name="cal1" placeholder="Ej. 8">
+					</div>
+			
+					<div class="">
+						<p>Calificación 2</p>
+						<input type="text" name="cal2" placeholder="Ej. 8">
+					</div>
+			
+					<div class="">
+						<p>Calificación 3</p>
+						<input type="text" name="cal3" placeholder="Ej. 8">
+					</div>
+
+				</div>
+				
+				<button class="send-button" type="submit">Registrar alumno</button>
+				
+			</form>
+	
+		</div>
+	
+		<div class="listing">
+			<h2>Materias</h2>
+	
+			<table>
+				<tr>
+					<th>Materia</th>
+					<th>Alumno</th>
+					<th>Calificación 1</th>
+					<th>Calificación 2</th>
+					<th>Calificación 3</th>
+					<th>Promedio</th>
+				</tr>
+			
+				{% for item in calificaciones %}
+				<tr class="tr-data">
+					<td>{{ item.materia }}</td>
+					<td>{{ item.alumno }}</td>
+					<td>{{ item.calificacion1 }}</td>
+					<td>{{ item.calificacion2 }}</td>
+					<td>{{ item.calificacion3 }}</td>
+					<td>{{ item.promedio }}</td>
+				</tr>
+				{% endfor %}  
+			</table>
+			
+
+		</div>
+
+	</div>
+    
+</body>
+</html>
